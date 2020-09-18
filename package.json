@@ -1,0 +1,36 @@
+{
+  "name": "planetas_starwars",
+  "version": "1.0.0",
+  "description": "Projeto usando API https://swapi.dev/",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/main.js",
+    "debug": "nodemon --inspect ./src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magno-vianna/planets_API.git"
+  },
+  "author": "Magno Vianna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/magno-vianna/planets_API/issues"
+  },
+  "homepage": "https://github.com/magno-vianna/planets_API#readme",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.10.2",
+    "restify": "^8.5.1",
+    "restify-router": "^0.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-import-resolver-typescript": "^2.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "nodemon": "^2.0.4",
+    "prettier": "2.0.5"
+  }
+}
