@@ -1,8 +1,10 @@
-const server = require('./server/server');
-const planetsRoutes = require('./routes/planets.routes');
+import Server from './server/Server';
+import planetsRoutes from './routes/planets.routes';
+
 
 (async function main() {
   try {
+    const server = new Server();
     const application = await server.bootstrap([
       planetsRoutes,
     ]);

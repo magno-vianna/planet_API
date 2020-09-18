@@ -4,7 +4,7 @@
   "description": "Projeto usando API https://swapi.dev/",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/main.js",
+    "start": "nodemon dist/main.js",
     "debug": "nodemon --inspect ./src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,6 +26,8 @@
     "restify-router": "^0.6.1"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.7.36",
+    "@types/restify": "^8.4.2",
     "eslint": "^7.7.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-import-resolver-typescript": "^2.2.0",

@@ -4,7 +4,7 @@
 /* eslint-disable default-case */
 /* eslint-disable no-param-reassign */
 
-const handleError = (req, res, err, cb) => {
+/*const handleError = (req, res, err, cb) => {
   err._message = undefined;
   const messages = [];
   switch (err.name) {
@@ -26,4 +26,4 @@ const handleError = (req, res, err, cb) => {
   return cb();
 };
 
-module.exports = handleError;
+export = handleError; */
