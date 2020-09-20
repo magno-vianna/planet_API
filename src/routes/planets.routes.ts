@@ -8,5 +8,7 @@ const planetController = new PlanetController();
 
 router.get('/planets', planetController.index);
 router.get('/planets/:id', planetController.findById); 
+router.del('/planets/:id', planetController.delete);
+
 
 export = router;
