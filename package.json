@@ -4,6 +4,7 @@
   "description": "Projeto usando API https://swapi.dev/",
   "main": "index.js",
   "scripts": {
+    "prestart": "tsc",
     "start": "nodemon dist/main.js",
     "debug": "nodemon --inspect ./src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"

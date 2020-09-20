@@ -1,10 +1,23 @@
-//import Planet from '../models/Planet';
+import { Planet } from '../models/Planet';
 import Restify from 'restify';
+import PlanetService from '../services/PlanetService';
 
 class PlanetController {
+  private planetService: PlanetService;
+
+    constructor(planetService?: PlanetService) {
+      this.planetService = planetService || new PlanetService();
+    }
+
   public index = async (req: Restify.Request, res: Restify.Response, next: Restify.Next) => {
-    res.json('Hello Wolrd');
-    next();
+    if (req.query.name) {
+      const planetName = req.query.name;
+      const planet = await this.planetService.findPlanetByName(planetName);
+      res.json(planet);
+    }else{
+      const planets = await this.planetService.findPlanets();
+      res.json(planets);
+    };
   };
 };
 
