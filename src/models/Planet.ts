@@ -3,7 +3,8 @@ import * as mongoose from 'mongoose'
 export interface Planet extends mongoose.Document {
   name: string,
   climate: string,
-  terrain: string
+  terrain: string,
+  planetAppearance?: number
 }
 
 const planetSchema = new mongoose.Schema({
@@ -19,6 +20,10 @@ const planetSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  planetAppearance: {
+    type: Number, 
+    required: false,
+  }
 });
 
 export const Planet = mongoose.model<Planet>('Planet', planetSchema)

@@ -7,13 +7,21 @@ class PlanetController {
 
     constructor(planetService?: PlanetService) {
       this.planetService = planetService || new PlanetService();
-    }
+    };
+  
+    public create = async (req: Restify.Request, res: Restify.Response, next: Restify.Next) => {
+    const { name, climate, terrain } = req.body;
+    const planetCreated = await this.planetService.createPlanet(name, climate, terrain);
+    res.json(201, planetCreated);
+    next(); 
 
+  };  
   public index = async (req: Restify.Request, res: Restify.Response, next: Restify.Next) => {
     if (req.query.name) {
       const planetName = req.query.name;
       const planet = await this.planetService.findPlanetByName(planetName);
       res.json(planet);
+      next();
     }else{
       const planets = await this.planetService.findPlanets();
       res.json(planets);
