@@ -17,8 +17,16 @@ class PlanetController {
     }else{
       const planets = await this.planetService.findPlanets();
       res.json(planets);
+      next();
     };
   };
+  public findById = async (req: Restify.Request, res: Restify.Response, next: Restify.Next) => {
+    const planetId = req.params.id;
+    const verifyId = await this.planetService.findPlanetById(planetId);
+    res.json(200, verifyId);
+    next(); 
+  }
+
 };
 
 export default PlanetController;
