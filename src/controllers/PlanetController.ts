@@ -10,10 +10,14 @@ class PlanetController {
     };
   
     public create = async (req: Restify.Request, res: Restify.Response, next: Restify.Next) => {
-    const { name, climate, terrain } = req.body;
-    const planetCreated = await this.planetService.createPlanet(name, climate, terrain);
-    res.json(201, planetCreated);
-    next(); 
+    try {
+      const { name, climate, terrain } = req.body;
+      const planetCreated = await this.planetService.createPlanet(name, climate, terrain);
+      res.json(201, planetCreated);
+      next(); 
+    } catch (error) {
+      next(error)
+    }
 
   };  
   public index = async (req: Restify.Request, res: Restify.Response, next: Restify.Next) => {

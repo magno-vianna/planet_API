@@ -2,7 +2,7 @@ import restify from 'restify';
 import mongoose, { Mongoose } from 'mongoose';
 require('dotenv').config();
 
-//import handleError from './error.handler';
+import handleError from './error.handler';
 
 const conectionString = process.env.DB_CONNECTION_STRING; 
 
@@ -39,7 +39,7 @@ class Server{
           resolve(application);
         });
   
-        //application.on('restifyError', handleError);
+        application.on('restifyError', handleError);
       } catch (error) {
         reject(error);
       }

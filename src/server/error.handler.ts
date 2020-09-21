@@ -4,9 +4,9 @@
 /* eslint-disable default-case */
 /* eslint-disable no-param-reassign */
 
-/*const handleError = (req, res, err, cb) => {
+const handleError = (req, res, err, cb) => {
   err._message = undefined;
-  const messages = [];
+  const messages: any[] = [];
   switch (err.name) {
     case 'MongoError':
       if (err.code === 11000) {
@@ -26,4 +26,4 @@
   return cb();
 };
 
-export = handleError; */
+export = handleError; 
