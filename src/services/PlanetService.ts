@@ -2,6 +2,7 @@
 import { Planet } from '../models/Planet';
 import IPlanetRepository from '../repositories/IPlanetRepository';
 import PlanetRepository from '../repositories/PlanetRepository';
+import axios from 'axios'; 
 
 class PlanetService {
   private planetRepository: IPlanetRepository;
@@ -9,13 +10,18 @@ class PlanetService {
   constructor(planetRepository?: PlanetRepository) {
     this.planetRepository = planetRepository || new PlanetRepository();
   }
-  public async createPlanet(name: string, climate: string, terrain: string) {
+  public async createPlanet(name: string, climate: string, terrain: string,) {
     const verifiy = await this.planetRepository.findByName(name);
     if (verifiy.length){
       return verifiy;
     }
-    const planet = new Planet({ name, climate, terrain }); 
+    const getApiSwapi = await axios.get(`https://swapi.dev/api/planets/?search=${ name }`);
+    const arrayApiSwapi = getApiSwapi.data.results[0].films.length; 
+    
+    const planet = new Planet({ name, climate, terrain, planetAppearance: arrayApiSwapi }); 
     const createdPlanet = await this.planetRepository.createPlanet(planet);
+    
+    
     return createdPlanet; 
   };
   
@@ -40,8 +46,5 @@ class PlanetService {
   };
 
 };
-
-
-
 export default PlanetService; 
 
