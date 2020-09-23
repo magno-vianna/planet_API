@@ -15,23 +15,49 @@ class PlanetService {
     if (verifiy.length){
       return verifiy;
     }
-    const getApiSwapi = await axios.get(`https://swapi.dev/api/planets/?search=${ name }`);
-    const arrayApiSwapi = getApiSwapi.data.results[0].films.length; 
+    const planetAppearenceSwapi = await this.getPlanetAppearanceFromSwapi(name); 
     
-    const planet = new Planet({ name, climate, terrain, planetAppearance: arrayApiSwapi }); 
+    const namePascalCase = this.stringToPascalCase(name)
+    
+    const planet = new Planet({ name: namePascalCase, climate, terrain });
+    if (planetAppearenceSwapi){
+      planet.planetAppearance = planetAppearenceSwapi
+    }
     const createdPlanet = await this.planetRepository.createPlanet(planet);
-    
     
     return createdPlanet; 
   };
   
+  private async getPlanetAppearanceFromSwapi(name: string) {
+    try {
+      
+      const getApiSwapi = await axios.get(`https://swapi.dev/api/planets/?search=${name}`, {timeout: 2000});
+      if (getApiSwapi.data.results.length){
+        const arrayApiSwapi = getApiSwapi.data.results[0].films.length;
+        return  arrayApiSwapi;
+      }
+      return null;
+    } catch (error) {
+      console.log(error)
+      throw new Error('Error calling API Swapi')
+    }
+    
+  }
+
+  private stringToPascalCase(name: string) {
+    return name.split(' ')
+      .map(item => item.charAt(0).toUpperCase() + item.substr(1).toLowerCase())
+      .join(' ');
+  } 
+
   public async findPlanets() {
-    const planets = await this.planetRepository.findAll();
+    const planets = await this.planetRepository.findAll();  
     return planets;
   };
 
   public async findPlanetByName(planetName: string) {
-    const planet = await this.planetRepository.findByName(planetName);
+    const namePascalCase = this.stringToPascalCase(planetName)
+    const planet = await this.planetRepository.findByName(namePascalCase);
     return planet;
   };
   

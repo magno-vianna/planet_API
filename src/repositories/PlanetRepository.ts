@@ -9,6 +9,8 @@ class PlanetRepository implements IPlanetRepository {
     };
 
     public async findByName(planetName: string): Promise<Planet[]>{
+        
+
         const planetVerify = await Planet.find({ name: planetName }).exec();
         return planetVerify;
     };
