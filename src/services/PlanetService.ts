@@ -7,7 +7,7 @@ import axios from 'axios';
 class PlanetService {
   private planetRepository: IPlanetRepository;
   
-  constructor(planetRepository?: PlanetRepository) {
+  constructor(planetRepository?: IPlanetRepository) {
     this.planetRepository = planetRepository || new PlanetRepository();
   }
   public async createPlanet(name: string, climate: string, terrain: string,) {
@@ -16,6 +16,7 @@ class PlanetService {
       return verifiy;
     }
     const planetAppearenceSwapi = await this.getPlanetAppearanceFromSwapi(name); 
+
     
     const namePascalCase = this.stringToPascalCase(name)
     
@@ -28,10 +29,11 @@ class PlanetService {
     return createdPlanet; 
   };
   
-  private async getPlanetAppearanceFromSwapi(name: string) {
+  public async getPlanetAppearanceFromSwapi(name: string) {
     try {
-      
+      console.log('------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
       const getApiSwapi = await axios.get(`https://swapi.dev/api/planets/?search=${name}`, {timeout: 2000});
+      console.log(getApiSwapi.data)
       if (getApiSwapi.data.results.length){
         const arrayApiSwapi = getApiSwapi.data.results[0].films.length;
         return  arrayApiSwapi;
