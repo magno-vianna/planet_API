@@ -7,7 +7,8 @@
     "prestart": "tsc",
     "start": "nodemon dist/main.js",
     "debug": "nodemon --inspect ./src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "test --watch"
   },
   "repository": {
     "type": "git",
@@ -28,13 +29,17 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/jest": "^26.0.14",
     "@types/mongoose": "^5.7.36",
     "@types/restify": "^8.4.2",
     "eslint": "^7.7.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-import-resolver-typescript": "^2.2.0",
     "eslint-plugin-import": "^2.22.0",
+    "jest": "^26.4.2",
     "nodemon": "^2.0.4",
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "ts-jest": "^26.4.0",
+    "typescript": "^4.0.3"
   }
 }

@@ -38,6 +38,17 @@ class PlanetController {
     res.json(200, verifyId);
     next(); 
   };
+
+  /*public update = async (req: Restify.Request, res: Restify.Response, next: Restify.Next) => {
+    const planetId = req.params.id;
+    const planetbody = req.body;
+    
+    const planetUpdate = await this.planetService.updatePlanetById(req);
+    res.json(planetUpdate);
+    
+    next(); 
+  };*/
+
   public delete = async (req: Restify.Request, res: Restify.Response, next: Restify.Next) => {
     const planetId = req.params.id; 
     await this.planetService.deletePlanet(planetId);

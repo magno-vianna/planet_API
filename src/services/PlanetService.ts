@@ -44,7 +44,7 @@ class PlanetService {
     
   }
 
-  private stringToPascalCase(name: string) {
+  public stringToPascalCase(name: string) {
     return name.split(' ')
       .map(item => item.charAt(0).toUpperCase() + item.substr(1).toLowerCase())
       .join(' ');
@@ -65,6 +65,12 @@ class PlanetService {
     const planet = await this.planetRepository.findById(planetId);
     return planet; 
   };
+
+  /*public async updatePlanetById(planetId: any){
+    const planet = await this.planetRepository.findById(planetId)
+        
+    return planet;
+  };*/
 
   public async deletePlanet(planetId: any){
     const planet = await this.planetRepository.delete(planetId);
