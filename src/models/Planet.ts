@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose'
 
 export interface Planet extends mongoose.Document {
+  readonly _id:  string, 
   name: string,
   climate: string,
   terrain: string,

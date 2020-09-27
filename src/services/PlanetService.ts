@@ -10,10 +10,10 @@ class PlanetService {
   constructor(planetRepository?: IPlanetRepository) {
     this.planetRepository = planetRepository || new PlanetRepository();
   }
-  public async createPlanet(name: string, climate: string, terrain: string,) {
-    const verifiy = await this.planetRepository.findByName(name);
+  public async createPlanet(name: string, climate: string, terrain: string) {
+    const verifiy = await this.findPlanetByName(name)
     if (verifiy.length){
-      return verifiy;
+      throw new Error('Planet already exists');
     }
     const planetAppearenceSwapi = await this.getPlanetAppearanceFromSwapi(name); 
 
@@ -31,9 +31,7 @@ class PlanetService {
   
   public async getPlanetAppearanceFromSwapi(name: string) {
     try {
-      console.log('------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
       const getApiSwapi = await axios.get(`https://swapi.dev/api/planets/?search=${name}`, {timeout: 2000});
-      console.log(getApiSwapi.data)
       if (getApiSwapi.data.results.length){
         const arrayApiSwapi = getApiSwapi.data.results[0].films.length;
         return  arrayApiSwapi;
@@ -67,12 +65,6 @@ class PlanetService {
     const planet = await this.planetRepository.findById(planetId);
     return planet; 
   };
-
-  /*public async updatePlanetById(planetId: any){
-    const planet = await this.planetRepository.findById(planetId)
-        
-    return planet;
-  };*/
 
   public async deletePlanet(planetId: any){
     const planet = await this.planetRepository.delete(planetId);

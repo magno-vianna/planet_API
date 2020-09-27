@@ -22,11 +22,6 @@ class PlanetRepository implements IPlanetRepository {
         const planet = await Planet.findById(planetId).exec();
         return planet;
     };
-    
-    /*public async updateFindById(){
-        const planet = await Planet.findByIdAndUpdate().exec();
-        return planet
-    }*/
 
     public async delete(planetId: any): Promise<Planet | null> {
        const planet = await Planet.findByIdAndDelete(planetId).exec();

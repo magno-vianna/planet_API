@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "prestart": "tsc",
-    "start": "nodemon dist/main.js",
+    "start": "nodemon dist/src/main.js",
     "debug": "nodemon --inspect ./src/main.js",
     "test": "jest",
     "test:watch": "test --watch"
@@ -41,6 +41,13 @@
     "nodemon": "^2.0.4",
     "prettier": "2.0.5",
     "ts-jest": "^26.4.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-typescript": "^7.10.4",
+    "babel-plugin-module-resolver": "^4.0.0"
   }
 }

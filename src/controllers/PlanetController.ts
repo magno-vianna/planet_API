@@ -16,6 +16,9 @@ class PlanetController {
       res.json(201, planetCreated);
       next(); 
     } catch (error) {
+      if (error.message === 'Planet already exists'){
+        res.json(400, {message: error.message})
+      }
       next(error)
     }
 
@@ -38,17 +41,7 @@ class PlanetController {
     res.json(200, verifyId);
     next(); 
   };
-
-  /*public update = async (req: Restify.Request, res: Restify.Response, next: Restify.Next) => {
-    const planetId = req.params.id;
-    const planetbody = req.body;
-    
-    const planetUpdate = await this.planetService.updatePlanetById(req);
-    res.json(planetUpdate);
-    
-    next(); 
-  };*/
-
+  
   public delete = async (req: Restify.Request, res: Restify.Response, next: Restify.Next) => {
     const planetId = req.params.id; 
     await this.planetService.deletePlanet(planetId);
