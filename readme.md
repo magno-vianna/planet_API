@@ -3,8 +3,8 @@
 API para cadastar planetas dos Filmes Star Wars
 
 Requesitos: 
-* Node.js - [Install Node.js 12](https://nodejs.org/en/), including the NPM package management tool.
-* Typescript - [Install Typescript using nodejs 12] (https://www.typescriptlang.org/): ```npm install -g typescript```.
+* Node.js - [Instalação Node.js 12](https://nodejs.org/en/), including the NPM package management tool.
+* Typescript - [Instalação Typescript Node.js 12](https://www.typescriptlang.org/): ```npm install -g typescript```.
 * Docker Hub Mongo - [Instalação ](https://hub.docker.com/_/mongo)
 
 Use o instalador do NPM para instalar as dependências.
