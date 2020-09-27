@@ -4,6 +4,7 @@ import IPlanetRepository from '../repositories/IPlanetRepository';
 import PlanetRepository from '../repositories/PlanetRepository';
 import axios from 'axios'; 
 
+
 class PlanetService {
   private planetRepository: IPlanetRepository;
   
@@ -31,7 +32,7 @@ class PlanetService {
   
   public async getPlanetAppearanceFromSwapi(name: string) {
     try {
-      const getApiSwapi = await axios.get(`https://swapi.dev/api/planets/?search=${name}`, {timeout: 2000});
+      const getApiSwapi = await axios.get(`${process.env.API_SWAPI}?search=${name}`, {timeout: 2000});
       if (getApiSwapi.data.results.length){
         const arrayApiSwapi = getApiSwapi.data.results[0].films.length;
         return  arrayApiSwapi;
