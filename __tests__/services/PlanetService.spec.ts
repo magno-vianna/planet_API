@@ -19,7 +19,7 @@ describe('PlanetService', () => {
   afterAll(async () => {
     await connection.close();
   });
-    it('Deve criar um planeta com os parametros - Nome, Clima, Terreno e consumir a API Swapi retornando aparições em filmes',async () => {
+    it('Deve criar um planeta com os parametros - Nome, Clima, Terreno e Mokar a API Swapi retornando aparições em filmes',async () => {
         
         const planetService = new PlanetService(); 
         

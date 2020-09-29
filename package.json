@@ -7,7 +7,7 @@
     "prestart": "tsc",
     "start": "nodemon dist/src/main.js",
     "debug": "nodemon --inspect ./src/main.js",
-    "test": "jest",
+    "test": "jest --runInBand --detectOpenHandles",
     "test:watch": "test --watch"
   },
   "repository": {
