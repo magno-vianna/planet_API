@@ -14,7 +14,7 @@ const handleError = (req, res, err, cb) => {
       }
       break;
 
-    case 'ValidationError':
+    case 'ValidationError':9
       err.statusCode = 400;
       for (const name in err.errors) {
         messages.push({ message: err.errors[name].message });

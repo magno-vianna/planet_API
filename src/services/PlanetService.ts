@@ -2,12 +2,12 @@
 import { Planet } from '../models/Planet';
 import IPlanetRepository from '../repositories/IPlanetRepository';
 import PlanetRepository from '../repositories/PlanetRepository';
-import axios from 'axios'; 
+import axios from 'axios';
 
 
 class PlanetService {
   private planetRepository: IPlanetRepository;
-  
+
   constructor(planetRepository?: IPlanetRepository) {
     this.planetRepository = planetRepository || new PlanetRepository();
   }
@@ -16,23 +16,22 @@ class PlanetService {
     if (verifiy.length){
       throw new Error('Planet already exists');
     }
-    const planetAppearenceSwapi = await this.getPlanetAppearanceFromSwapi(name); 
+    const planetAppearenceSwapi = await this.getPlanetAppearanceFromSwapi(name);
 
-    
     const namePascalCase = this.stringToPascalCase(name)
-    
+
     const planet = new Planet({ name: namePascalCase, climate, terrain });
     if (planetAppearenceSwapi){
       planet.planetAppearance = planetAppearenceSwapi
     }
     const createdPlanet = await this.planetRepository.createPlanet(planet);
-    
-    return createdPlanet; 
+
+    return createdPlanet;
   };
-  
+
   public async getPlanetAppearanceFromSwapi(name: string) {
     try {
-      const getApiSwapi = await axios.get(`${process.env.API_SWAPI}?search=${name}`, {timeout: 2000});
+      const getApiSwapi = await axios.get(`${process.env.API_SWAPI}?search=${name}`, {timeout: 4000});
       if (getApiSwapi.data.results.length){
         const arrayApiSwapi = getApiSwapi.data.results[0].films.length;
         return  arrayApiSwapi;
@@ -42,17 +41,18 @@ class PlanetService {
       console.log(error)
       throw new Error('Error calling API Swapi')
     }
-    
+
   }
 
   public stringToPascalCase(name: string) {
     return name.split(' ')
       .map(item => item.charAt(0).toUpperCase() + item.substr(1).toLowerCase())
       .join(' ');
-  } 
+
+  }
 
   public async findPlanets() {
-    const planets = await this.planetRepository.findAll();  
+    const planets = await this.planetRepository.findAll();
     return planets;
   };
 
@@ -61,17 +61,17 @@ class PlanetService {
     const planet = await this.planetRepository.findByName(namePascalCase);
     return planet;
   };
-  
+
   public async findPlanetById(planetId: any) {
     const planet = await this.planetRepository.findById(planetId);
-    return planet; 
+    return planet;
   };
 
-  public async deletePlanet(planetId: any){
+    public async deletePlanet(planetId: any){
     const planet = await this.planetRepository.delete(planetId);
-    return planet; 
+    return planet;
   };
 
 };
-export default PlanetService; 
+export default PlanetService;
 
